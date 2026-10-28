@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manage student clubs, events, and registrations in one place.">
+  <title>Campus Clubs | Student Club Management</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Campus Clubs home"><span class="brand-mark">CC</span><span>Campus<span class="brand-light">Clubs</span></span></a>
+    <nav><a href="#clubs">Clubs</a><a href="#events">Events</a></nav>
+    <div class="top-actions"><span id="user-label" class="user-label"></span><button id="logout-btn" class="button button-ghost hidden">Log out</button></div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <div><p class="eyebrow">YOUR CAMPUS, YOUR COMMUNITY</p><h1>Find your people.<br><span>Build something great.</span></h1><p class="hero-copy">Discover student clubs, explore campus events, and keep your extracurricular life organized.</p><div class="hero-actions"><a class="button" href="#clubs">Explore clubs</a><a class="button button-secondary" href="#events">Upcoming events</a></div></div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-symbol">✳</div><div class="floating-card floating-top">✦ <span>Find your community</span></div><div class="floating-card floating-bottom">↗ <span>Make it happen</span></div></div>
+    </section>
+    <section id="auth-panel" class="auth-panel">
+      <div class="section-heading"><div><p class="eyebrow">GET STARTED</p><h2>Join the campus community</h2></div><p class="muted">Create an account to register for events and join clubs.</p></div>
+      <div class="auth-grid">
+        <form id="login-form" class="panel form-panel"><h3>Welcome back</h3><label>Email<input type="email" name="email" autocomplete="email" required maxlength="254"></label><label>Password<input type="password" name="password" autocomplete="current-password" required minlength="8"></label><button class="button button-full" type="submit">Log in</button><p class="form-note">New here? Use the create-account form.</p></form>
+        <form id="register-form" class="panel form-panel"><h3>Create an account</h3><label>Full name<input name="name" autocomplete="name" required minlength="2" maxlength="80"></label><label>Email<input type="email" name="email" autocomplete="email" required maxlength="254"></label><label>Password<input type="password" name="password" autocomplete="new-password" required minlength="8"><small>At least 8 characters.</small></label><button class="button button-full" type="submit">Create account</button><p class="form-note">The first account is not automatically an administrator.</p></form>
+      </div>
+    </section>
+    <section id="dashboard" class="hidden">
+      <div class="section-heading"><div><p class="eyebrow">YOUR SPACE</p><h2 id="welcome-heading">Your dashboard</h2></div><span id="role-chip" class="chip">Student</span></div>
+      <div class="stats-grid"><article class="stat-card"><span>Available clubs</span><strong id="stat-clubs">—</strong></article><article class="stat-card"><span>Upcoming events</span><strong id="stat-events">—</strong></article><article class="stat-card"><span>Your registrations</span><strong id="stat-registrations">—</strong></article></div>
+      <div id="admin-panel" class="panel admin-panel hidden"><div><p class="eyebrow">CLUB LEADERSHIP</p><h3>Manage campus activities</h3><p class="muted">Administrators can add clubs and publish events for students.</p></div><div class="admin-forms"><form id="club-form"><h4>Add a club</h4><label>Club name<input name="name" required maxlength="100"></label><label>Description<textarea name="description" required maxlength="1000" rows="3"></textarea></label><label>Category<input name="category" required maxlength="60" placeholder="Technology, Arts, Sports…"></label><button class="button" type="submit">Create club</button></form><form id="event-form"><h4>Publish an event</h4><label>Event title<input name="title" required maxlength="120"></label><label>Club<select name="club_id" id="event-club" required></select></label><label>Description<textarea name="description" required maxlength="1500" rows="3"></textarea></label><label>Location<input name="location" required maxlength="160"></label><label>Starts at<input type="datetime-local" name="starts_at" required></label><label>Capacity<input type="number" name="capacity" min="1" max="10000" required value="50"></label><button class="button" type="submit">Publish event</button></form></div></div>
+    </section>
+    <section id="clubs">
+      <div class="section-heading"><div><p class="eyebrow">EXPLORE</p><h2>Clubs for every interest</h2></div><label class="search-box"><span class="sr-only">Search clubs</span><input id="club-search" type="search" placeholder="Search clubs…"></label></div>
+      <div id="club-list" class="card-grid"><div class="loading">Loading clubs…</div></div>
+    </section>
+    <section id="events">
+      <div class="section-heading"><div><p class="eyebrow">WHAT'S HAPPENING</p><h2>Upcoming events</h2></div><label class="search-box"><span class="sr-only">Search events</span><input id="event-search" type="search" placeholder="Search events…"></label></div>
+      <div id="event-list" class="card-grid"><div class="loading">Loading events…</div></div>
+    </section>
+    <section id="my-registrations" class="hidden">
+      <div class="section-heading"><div><p class="eyebrow">YOUR PLANS</p><h2>My event registrations</h2></div></div>
+      <div id="registration-list" class="card-grid"></div>
+    </section>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  </main>
+  <footer><span class="brand-mark small-mark">CC</span><span>CampusClubs</span><span class="footer-note">Made for student communities.</span></footer>
+</body>
+</html>
